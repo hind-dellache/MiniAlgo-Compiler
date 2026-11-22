@@ -1,0 +1,107 @@
+//1. Identificateur invalide (commence par chiffre)
+PROGRAM Test
+DECL
+INTEGER : 1A ;
+ENDDECL
+BEGIN
+END
+
+Erreur attendue : Identificateur invalide
+
+//2. Identificateur trop long (> 8 caractères)
+PROGRAM Test
+DECL
+INTEGER : variable_trop_longue ;
+ENDDECL
+BEGIN
+END
+
+Erreur : Identificateur trop long
+
+//3. Identificateur avec symbole interdit
+PROGRAM Test
+DECL
+INTEGER : abc-def ;
+ENDDECL
+BEGIN
+END
+
+Erreur : Symbole inconnu (-)
+
+
+// 4.1 Entier hors limites
+PROGRAM Test
+DECL
+CONST A = 40000 ;
+ENDDECL
+BEGIN
+END
+
+Erreur :Entier hors limites
+
+
+// 4.2 Reel hors limites
+PROGRAM Test
+DECL
+CONST A = -32769.10 ;
+ENDDECL
+BEGIN
+END
+
+Erreur :Reel hors limites
+
+
+//5. Entier signé SANS parenthèses 
+PROGRAM Test
+DECL
+CONST A = -5 ; // ou bien : CONST A = -3.14 ;
+ENDDECL
+BEGIN
+END
+
+Erreur attendue: entier signe sans parentheses ou bien : reel signe sans parentheses 
+
+//7. Réel mal formé
+
+PROGRAM Test
+DECL
+CONST X = (3.) ;
+ENDDECL
+BEGIN
+END
+
+Erreur : Réel mal formé
+
+
+//8. Nombre + lettres
+PROGRAM Test
+DECL
+INTEGER : A ;
+ENDDECL
+BEGIN
+A = 123abc ;
+END
+
+Erreur : Identificateur invalide
+
+//9. Symbole inconnu
+PROGRAM Test
+DECL
+INTEGER : A ;
+ENDDECL
+BEGIN
+A = 5 @ 3 ;
+END
+
+Erreur : Symbole inconnu @
+
+//10. Commentaire non fermé 
+PROGRAM Test
+DECL
+INTEGER : A ;
+/* commentaire non ferme
+ENDDECL
+BEGIN
+END
+
+Erreur : commentaire non ferme
